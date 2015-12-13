@@ -1,0 +1,2 @@
+# KanPianWeb
+KanPianManager配套的网页web端，基于Material Design Lite，适配手机和pc的webkit内核浏览器
