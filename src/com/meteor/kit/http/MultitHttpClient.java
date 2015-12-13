@@ -763,7 +763,8 @@ public class MultitHttpClient {
 		if(StringUtils.isNotBlank(strStream)){
 			InputStream is=IOUtils.toInputStream(strStream, encode);
 			InputStreamEntity reqEntity = new InputStreamEntity(is);
-			reqEntity.setContentType("binary/octet-stream");
+			//reqEntity.setContentType("binary/octet-stream");
+			reqEntity.setContentType("application/x-www-form-urlencoded");
 			reqEntity.setChunked(true);
 			httppost.setEntity(reqEntity);
 		}
