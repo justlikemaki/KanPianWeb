@@ -1,0 +1,31 @@
+.tagspan span {
+    background: rgb(68,138,255);
+}
+.tagspan span i {
+    background: rgb(68,138,255);
+}
+.pagediv .pagelink:hover {
+    background: rgb(68,138,255);
+}
+.pagediv .pagelink {
+    color: rgb(68,138,255);
+}
+.pagediv .nowpage {
+    background: rgb(68,138,255);
+    border: 1px solid rgb(68,138,255);
+}
+#delalog {
+    background: rgb(68,138,255);
+}
+.selectdellist span{
+    border: 3px solid rgb(68,138,255);
+}
+.selectdellist .selected{
+    background: rgb(68,138,255);
+}
+.selectdellist .selectedAll{
+    background: rgb(68,138,255);
+}
+.totop {
+    background: rgb(68,138,255);
+}
