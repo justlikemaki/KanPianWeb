@@ -47,6 +47,25 @@ public class WebAction extends Controller {
 		}
 	}
 
+	@Clear
+	public void pageGetBt(){
+		try {
+			String sv = getPara("searchval");
+			String idtype = getPara("idtype");
+			String likeflag = getPara("islike");
+			Map param=new HashMap();
+			param.put("searchval",sv);
+			param.put("idtype",idtype);
+			param.put("islike",likeflag);
+			String url= InterfaceKit.getGetPageBtUrl();
+			String res= MultitHttpClient.getInParams(url, param);
+			renderText(res);
+		}catch (Exception e){
+			logger.error("pageGetBt: " + e.toString());
+			renderText("");
+		}
+	}
+
 	public void index(){
 		newspage();
 	}
@@ -154,5 +173,10 @@ public class WebAction extends Controller {
 			request.setAttribute("pagetype", "list");
 			request.setAttribute("tab", "newspage");
 		}
+	}
+
+	public void getbtlist(){
+		HttpServletRequest request=getRequest();
+		render(PageKit.topage(request, 0, "getbtlist", "getbtlist", "")+ ".jsp");
 	}
 }

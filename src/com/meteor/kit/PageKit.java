@@ -20,6 +20,7 @@ public class PageKit {
 	private final static Logger logger = LoggerFactory.getLogger(PageKit.class);
 
 	public static String topage(HttpServletRequest request,int nowpage,String pagename,String pagetype,String searchzd ){
+		if(nowpage!=0) {
 			try {
 				SearchQueryP p = new SearchQueryP();
 				p.setSbtype("web");
@@ -31,34 +32,35 @@ public class PageKit {
 				}
 				p.setParameters(mp);
 				Map param = new HashMap();
-				param.put("sp",JsonKit.bean2JSON(p));
+				param.put("sp", JsonKit.bean2JSON(p));
 
-				String url=InterfaceKit.getGetLeftUrl();
-				String json=MultitHttpClient.getInParams(url,param);
-				Map res =JsonKit.json2Bean(json, HashMap.class);
-				if(res.get("status").toString().equals("-1")){
+				String url = InterfaceKit.getGetLeftUrl();
+				String json = MultitHttpClient.getInParams(url, param);
+				Map res = JsonKit.json2Bean(json, HashMap.class);
+				if (res.get("status").toString().equals("-1")) {
 					logger.error("topage: " + res.get("errmsg").toString());
 					return "error";
 				}
 				List<javsrc> srcs = (List<javsrc>) res.get("list");
-				double dcount=Double.valueOf(res.get("pagecount").toString());
-				long count= Math.round(dcount);
-				srcs=BeanKit.copyTo(srcs,javsrc.class);
-				double dpagecount =Double.valueOf(res.get("count").toString());
+				double dcount = Double.valueOf(res.get("pagecount").toString());
+				long count = Math.round(dcount);
+				srcs = BeanKit.copyTo(srcs, javsrc.class);
+				double dpagecount = Double.valueOf(res.get("count").toString());
 				long pagecount = Math.round(dpagecount);
 				request.setAttribute("srcs", srcs);
 				request.setAttribute("pagecount", pagecount);//总共有多少条数据
 				request.setAttribute("countsize", count);//总共显示多少条数据
 				request.setAttribute("pagenum", nowpage);//当前页面
-				if(searchzd.equals("tabtype")||pagename.equals("newspage")) {
-					request.setAttribute("actionUrl", "web/"+pagename);//要跳转的页面名称
-				}else{
-					request.setAttribute("actionUrl", "web/"+"search");//要跳转的页面名称
+				if (searchzd.equals("tabtype") || pagename.equals("newspage")) {
+					request.setAttribute("actionUrl", "web/" + pagename);//要跳转的页面名称
+				} else {
+					request.setAttribute("actionUrl", "web/" + "search");//要跳转的页面名称
 				}
 			} catch (Exception e) {
 				logger.error("topage: " + e.toString());
 				return "error";
 			}
+		}
 		request.setAttribute("pagetype", pagetype);//页面类型
 		request.setAttribute("tabtitle", pagename.toUpperCase());//页面标题
 		request.setAttribute("tab", pagename);

@@ -13,6 +13,8 @@ public class InterfaceKit {
     private static String getRightUrl=serverIp+"getRight";
     private static String getLeftUrl=serverIp+"getLeft";
     private static String getBtUrl=serverIp+"getBt";
+    private static String getPageBtUrl=serverIp+"pageGetBt";
+
 
     public static String getServerIp() {
         return serverIp;
@@ -44,5 +46,13 @@ public class InterfaceKit {
 
     public static void setGetBtUrl(String getBtUrl) {
         InterfaceKit.getBtUrl = getBtUrl;
+    }
+
+    public static String getGetPageBtUrl() {
+        return getPageBtUrl;
+    }
+
+    public static void setGetPageBtUrl(String getPageBtUrl) {
+        InterfaceKit.getPageBtUrl = getPageBtUrl;
     }
 }
