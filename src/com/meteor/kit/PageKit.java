@@ -18,8 +18,29 @@ import java.util.Map;
 public class PageKit {
 
 	private final static Logger logger = LoggerFactory.getLogger(PageKit.class);
+	private static Map<String,String> tabtype=new HashMap<String, String>();
+	static {
+		tabtype.put("0","newspage");
+		tabtype.put("1","censored");
+		tabtype.put("2","uncensored");
+		tabtype.put("3","westporn");
+		tabtype.put("4","classical");
+	}
 
-	public static String topage(HttpServletRequest request,int nowpage,String pagename,String pagetype,String searchzd ){
+	public static String getTabType(String type){
+		return tabtype.get(type);
+	}
+
+	public static boolean hasTabType(String value){
+		for(Map.Entry<String, String> entry:tabtype.entrySet()){
+			if(entry.getValue().equals(value.toLowerCase())){
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public static String topage(HttpServletRequest request,int nowpage,String pagename,String pagetype,Map searchzd ){
 		if(nowpage!=0) {
 			try {
 				SearchQueryP p = new SearchQueryP();
@@ -27,8 +48,9 @@ public class PageKit {
 				p.setNowpage(nowpage);
 				Map mp = new HashMap();
 				//如果搜索条件不为空，加入搜索条件
-				if (StringUtils.isNotBlank(searchzd)) {
-					mp.put(searchzd, pagename);
+				if (searchzd!=null) {
+//					mp.put(searchzd, pagename);
+					mp=searchzd;
 				}
 				p.setParameters(mp);
 				Map param = new HashMap();
@@ -51,7 +73,9 @@ public class PageKit {
 				request.setAttribute("pagecount", pagecount);//总共有多少条数据
 				request.setAttribute("countsize", count);//总共显示多少条数据
 				request.setAttribute("pagenum", nowpage);//当前页面
-				if (searchzd.equals("tabtype") || pagename.equals("newspage")) {
+
+//				if (searchzd.equals("tabtype") || pagename.equals("newspage")) {
+				if(hasTabType(pagename)){
 					request.setAttribute("actionUrl", "web/" + pagename);//要跳转的页面名称
 				} else {
 					request.setAttribute("actionUrl", "web/" + "search");//要跳转的页面名称

@@ -78,7 +78,7 @@ public class WebAction extends Controller {
 		if(StringUtils.isNotBlank(p)) {
 			num = getParaToInt();
 		}
-		render(PageKit.topage(request, num, "newspage", "list", "") + ".jsp");
+		render(PageKit.topage(request, num, "newspage", "list", null) + ".jsp");
 	}
 
 	public void censored(){
@@ -89,7 +89,9 @@ public class WebAction extends Controller {
 		if(StringUtils.isNotBlank(p)) {
 			num = getParaToInt();
 		}
-		render(PageKit.topage(request, num, "censored", "list", "tabtype")+ ".jsp");
+		Map scmap=new HashMap();
+		scmap.put("tabtype","censored");
+		render(PageKit.topage(request, num, "censored", "list", scmap)+ ".jsp");
 	}
 
 	public void uncensored(){
@@ -100,7 +102,9 @@ public class WebAction extends Controller {
 		if(StringUtils.isNotBlank(p)) {
 			num = getParaToInt();
 		}
-		render(PageKit.topage(request, num, "uncensored", "list", "tabtype")+ ".jsp");
+		Map scmap=new HashMap();
+		scmap.put("tabtype","uncensored");
+		render(PageKit.topage(request, num, "uncensored", "list", scmap)+ ".jsp");
 	}
 
 	public void westporn(){
@@ -111,7 +115,9 @@ public class WebAction extends Controller {
 		if(StringUtils.isNotBlank(p)) {
 			num = getParaToInt();
 		}
-		render(PageKit.topage(request, num, "westporn", "list", "tabtype")+ ".jsp");
+		Map scmap=new HashMap();
+		scmap.put("tabtype","westporn");
+		render(PageKit.topage(request, num, "westporn", "list", scmap)+ ".jsp");
 	}
 
 	public void classical(){
@@ -122,7 +128,9 @@ public class WebAction extends Controller {
 		if(StringUtils.isNotBlank(p)) {
 			num = getParaToInt();
 		}
-		render(PageKit.topage(request, num, "classical", "list", "tabtype")+ ".jsp");
+		Map scmap=new HashMap();
+		scmap.put("tabtype","classical");
+		render(PageKit.topage(request, num, "classical", "list", scmap)+ ".jsp");
 	}
 
 	public void search(){
@@ -134,10 +142,22 @@ public class WebAction extends Controller {
 		String sp = getPara("sp");
 		String time = getPara("time");
 
+		Map scmap=new HashMap();
+		String type = getPara("type");
+		if(StringUtils.isNotBlank(type)) {
+			String zhetype=PageKit.getTabType(type);
+			if(StringUtils.isNotBlank(zhetype)){
+				type=zhetype;
+			}
+			request.setAttribute("searchtype", type);
+			scmap.put("tabtype", type);
+		}
+
 		if(StringUtils.isNotBlank(sp)||StringUtils.isNotBlank(time)) {
 			if (StringUtils.isBlank(sp)) {
 				tagstr = time;
 				searchzd = "times";
+				scmap.put(searchzd,tagstr);
 				if (StringUtils.isNotBlank(tagstr)) {
 					request.setAttribute("searchname", "time");
 					request.setAttribute("searchvalue", tagstr);
@@ -145,6 +165,7 @@ public class WebAction extends Controller {
 			} else {
 				tagstr = sp;
 				searchzd = "tags";
+				scmap.put(searchzd,tagstr);
 				if (StringUtils.isNotBlank(tagstr)) {
 					request.setAttribute("searchname", "sp");
 					request.setAttribute("searchvalue", tagstr.toUpperCase());
@@ -153,6 +174,7 @@ public class WebAction extends Controller {
 		}else{
 			tagstr = "";
 			searchzd = "tags";
+			scmap.put(searchzd,tagstr);
 			request.setAttribute("searchname", "sp");
 			request.setAttribute("searchvalue", "");
 		}
@@ -161,7 +183,7 @@ public class WebAction extends Controller {
 		if(StringUtils.isNotBlank(p)) {
 			num = getParaToInt();
 		}
-		render(PageKit.topage(request,num, tagstr.toUpperCase(), "list", searchzd)+ ".jsp");
+		render(PageKit.topage(request,num, tagstr.toUpperCase(), "list", scmap)+ ".jsp");
 	}
 
 	private void editForm() {
@@ -177,6 +199,6 @@ public class WebAction extends Controller {
 
 	public void getbtlist(){
 		HttpServletRequest request=getRequest();
-		render(PageKit.topage(request, 0, "getbtlist", "getbtlist", "")+ ".jsp");
+		render(PageKit.topage(request, 0, "getbtlist", "getbtlist", null)+ ".jsp");
 	}
 }

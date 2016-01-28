@@ -1,8 +1,15 @@
 <%@ page language="java"  pageEncoding="UTF-8"%>
 <%@include file="../taglib.jsp"%>
 <link rel="stylesheet" href="css/list.css">
-<lf:MultiPages allcount="${pagecount}"  actionUrl="${actionUrl}" nowpage="${pagenum}" searchname="${searchname}" searchvalue="${searchvalue}"  count="${countsize}"></lf:MultiPages>
-${pagelist}
+<lf:MultiPages allcount="${pagecount}"  actionUrl="${actionUrl}" nowpage="${pagenum}" searchtype="${searchtype}"
+			   searchname="${searchname}" searchvalue="${searchvalue}"  count="${countsize}"></lf:MultiPages>
+
+<c:if test="${fn:contains(pagelist, 'empty')}">
+	</br>没有数据！
+</c:if>
+<c:if test="${!fn:contains(pagelist, 'empty')}">
+	${pagelist}
+</c:if>
 	<div class="context">
 		<ul class="contextlist" >
 		<c:forEach var="item" items="${srcs}">
@@ -43,7 +50,9 @@ ${pagelist}
 		</c:forEach>	
 		</ul>	
 	</div>
-${pagelist}
+<c:if test="${!fn:contains(pagelist, 'empty')}">
+	${pagelist}
+</c:if>
 <div class="schedulebar"><ul class="schedulelist"></ul></div>
 <div class="totop">去顶部</div>
 <script type="text/javascript" src="js/touch-baidu.min.js"></script>
