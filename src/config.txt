@@ -1,1 +1,2 @@
 serverhost=http://localhost:81/kan/interface/
+streammode=1

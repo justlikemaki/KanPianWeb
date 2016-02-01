@@ -197,7 +197,7 @@ public class WebAction extends Controller {
 		}
 
 		if(ispc()) {
-			int streammode = 1;
+			int streammode = PropKit.getInt("streammode");
 			request.setAttribute("streammode", streammode);
 			request.setAttribute("ispc", "1");
 		}else{
