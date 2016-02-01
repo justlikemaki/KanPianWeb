@@ -35,6 +35,14 @@
 	<link rel="stylesheet"  type="text/css" href="css/color_ext.css">
 	<script type="text/javascript" src="js/jq1.11.1_min.js"></script>
 	<script type="text/javascript" src="js/jquery.devrama.lazyload-0.9.3.js"></script>
+
+	<c:if test="${ ispc eq 1 }">
+		<link rel="stylesheet" type="text/css" href="css/default.css"/>
+	</c:if>
+	<c:if test="${ ispc eq 0 }">
+		<link rel="stylesheet" type="text/css" href="css/mobile.css"/>
+		<script type="text/javascript" src="js/stickUp.min.js"></script>
+	</c:if>
 </head>
 <body class="mdl-demo mdl-color--grey-100 mdl-color-text--grey-700 mdl-base">
 <script>
@@ -51,13 +59,6 @@
 			}
 		}
 		return flag;
-	}
-
-	if(!ispc()){
-		$("head").append('<link rel="stylesheet" type="text/css" href="css/mobile.css"/>');
-		$("head").append('<script type="text/javascript" src="js/stickUp.min.js"><\/script>');
-	}else{
-		$("head").append('<link rel="stylesheet" type="text/css" href="css/default.css"/>');
 	}
 </script>
 <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header is-upgraded">

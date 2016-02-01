@@ -1,6 +1,10 @@
 <%@ page language="java"  pageEncoding="UTF-8"%>
 <%@include file="../taglib.jsp"%>
 <link rel="stylesheet" href="css/list.css">
+<c:if test="${ streammode eq 1 }">
+	<link rel="stylesheet" href="css/streammode.css">
+</c:if>
+
 <lf:MultiPages allcount="${pagecount}"  actionUrl="${actionUrl}" nowpage="${pagenum}" searchtype="${searchtype}"
 			   searchname="${searchname}" searchvalue="${searchvalue}"  count="${countsize}"></lf:MultiPages>
 
@@ -13,7 +17,7 @@
 	<div class="context">
 		<ul class="contextlist" >
 		<c:forEach var="item" items="${srcs}">
-			<div delid="${item.id}" class="singlediv contextdiv mdl-card mdl-shadow--2dp">
+			<div delid="${item.id}" class="tmpdiv singlediv contextdiv mdl-card mdl-shadow--2dp">
 				<span id="${item.id}"></span><!-- 锚连接跳转位置 -->
 				<div class="mdl-card__supporting-text">
 					<h2 class="actitle mdl-card__title-text">${item.title}</h2>
@@ -57,3 +61,6 @@
 <div class="totop">去顶部</div>
 <script type="text/javascript" src="js/touch-baidu.min.js"></script>
 <script type="text/javascript" src="js/list.js"></script>
+<c:if test="${ streammode eq 1 }">
+	<script type="text/javascript" src="js/streammode.js"></script>
+</c:if>

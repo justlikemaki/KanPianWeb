@@ -195,9 +195,42 @@ public class WebAction extends Controller {
 			request.setAttribute("pagetype", "list");
 			request.setAttribute("tab", "newspage");
 		}
+
+		if(ispc()) {
+			int streammode = 1;
+			request.setAttribute("streammode", streammode);
+			request.setAttribute("ispc", "1");
+		}else{
+			request.setAttribute("ispc", "0");
+		}
+
+	}
+
+	private void setpc(){
+		HttpServletRequest request=getRequest();
+		boolean flag=ispc();
+		if(flag) {
+			request.setAttribute("ispc", "1");
+		}else{
+			request.setAttribute("ispc", "0");
+		}
+	}
+
+	private boolean ispc(){
+		String userAgentInfo = getRequest().getHeader("User-Agent");
+		String[] Agents = new String[]{"Android", "iPhone","SymbianOS", "Windows Phone","iPad", "iPod"};
+		boolean flag = true;
+		for (int v = 0; v < Agents.length; v++) {
+			if (userAgentInfo.contains(Agents[v])) {
+				flag = false;
+				break;
+			}
+		}
+		return flag;
 	}
 
 	public void getbtlist(){
+		setpc();
 		HttpServletRequest request=getRequest();
 		render(PageKit.topage(request, 0, "getbtlist", "getbtlist", null)+ ".jsp");
 	}
