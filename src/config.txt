@@ -1,2 +1,4 @@
 serverhost=http://localhost:81/kan/interface/
 streammode=1
+###图片接口外网地址
+rootdir=http://192.168.1.110:81

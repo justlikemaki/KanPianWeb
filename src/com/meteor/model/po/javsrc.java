@@ -1,6 +1,9 @@
 package com.meteor.model.po;
 
+import com.jfinal.kit.PropKit;
 import com.meteor.kit.JsonKit;
+import com.meteor.kit.PageKit;
+import org.apache.commons.lang.StringUtils;
 
 import java.util.List;
 
@@ -17,6 +20,7 @@ public class javsrc {
     private String tags, btfile, btname;
     private String sbm;
     private List<String> tagslist, btfilelist, btnamelist;
+    private String imgsrccg;
 
     public String getSbm() {
         return sbm;
@@ -147,6 +151,22 @@ public class javsrc {
 
     public String getClassName() {
         return "JavSrc";
+    }
+
+    public String getImgsrccg() {
+        return imgsrccg;
+    }
+
+    public void setImgsrccg(String imgsrccg) {
+        this.imgsrccg = imgsrccg;
+        initImgsrccg();
+    }
+
+    private void initImgsrccg(){
+        String rootdir= PropKit.get("rootdir");
+        if(StringUtils.isBlank(this.imgsrc)){
+            imgsrccg=rootdir+imgsrccg;
+        }
     }
 
 }

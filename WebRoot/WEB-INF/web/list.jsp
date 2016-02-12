@@ -24,8 +24,8 @@
 					<span>发布于:${item.times}</span>
 				</div>
 				<div class="mdl-card__title">
-					<a href="${item.imgsrc}" target="_blank">
-						<img data-lazysrc="${item.imgsrc}" src="img/loading.png" alt="请求图片链接失败"/>
+					<a href="${item.imgsrccg}" target="_blank">
+						<img data-lazysrc="${item.imgsrccg}" src="img/loading.png" alt="请求图片链接失败"/>
 					</a>
 				</div>
 				<c:if test="${item.tabtype ne 'westpron'}">
