@@ -159,7 +159,7 @@ public class javsrc {
 
     public void setImgsrccg(String imgsrccg) {
         this.imgsrccg = imgsrccg;
-        initImgsrccg();
+//        initImgsrccg();
     }
 
     private void initImgsrccg(){
