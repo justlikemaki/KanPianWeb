@@ -21,6 +21,7 @@ public class javsrc {
     private String sbm;
     private List<String> tagslist, btfilelist, btnamelist;
     private String imgsrccg;
+    private List<String> btfilelistcg;
 
     public String getSbm() {
         return sbm;
@@ -159,14 +160,12 @@ public class javsrc {
 
     public void setImgsrccg(String imgsrccg) {
         this.imgsrccg = imgsrccg;
-//        initImgsrccg();
     }
-
-    private void initImgsrccg(){
-        String rootdir= PropKit.get("rootdir");
-        if(StringUtils.isBlank(this.imgsrc)){
-            imgsrccg=rootdir+imgsrccg;
-        }
+    public List<String> getBtfilelistcg() {
+        return btfilelistcg;
+    }
+    public void setBtfilelistcg(List<String> btfilelistcg) {
+        this.btfilelistcg = btfilelistcg;
     }
 
 }

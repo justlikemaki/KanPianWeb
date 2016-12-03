@@ -44,9 +44,9 @@
 						<span class="mdl-button__ripple-container"><span class="mdl-ripple " style="width: 241.336713648366px; height: 241.336713648366px; transform: translate(-50%, -50%) translate(57px, 19px);"></span></span></a>
 				</div>
 				<div id="isbtlist" class="mdl-card__actions mdl-card--border">
-					<ol><c:if test="${fn:length(item.btfilelist) >0}">
-						<c:forEach var="i" begin="0" end="${fn:length(item.btfilelist)-1}">
-								<li><a target="_blank" href="${item.btfilelist[i]}">${item.btnamelist[i]}</a></li>
+					<ol><c:if test="${fn:length(item.btfilelistcg) >0}">
+						<c:forEach var="i" begin="0" end="${fn:length(item.btfilelistcg)-1}">
+								<li><a target="_blank" href="${item.btfilelistcg[i]}">${item.btnamelist[i]}</a></li>
 						</c:forEach>
 					</c:if></ol>
 				</div>
