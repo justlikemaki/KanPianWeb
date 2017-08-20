@@ -1,6 +1,5 @@
 package com.meteor.kit;
 
-import com.jfinal.kit.Prop;
 import com.jfinal.kit.PropKit;
 
 /**
@@ -9,50 +8,24 @@ import com.jfinal.kit.PropKit;
  * @category (这里用一句话描述这个类的作用)
  */
 public class InterfaceKit {
-    private static String serverIp=PropKit.get("serverhost");
-    private static String getRightUrl=serverIp+"getRight";
-    private static String getLeftUrl=serverIp+"getLeft";
-    private static String getBtUrl=serverIp+"getBt";
-    private static String getPageBtUrl=serverIp+"pageGetBt";
+	private static String getRightUrl = "getRight";
+	private static String getLeftUrl = "getLeft";
+	private static String getBtUrl = "getBt";
+	private static String getPageBtUrl = "pageGetBt";
 
+	public static String getGetRightUrl() {
+		return PropKit.get("serverhostip") + getRightUrl;
+	}
 
-    public static String getServerIp() {
-        return serverIp;
-    }
+	public static String getGetLeftUrl() {
+		return PropKit.get("serverhostip") + getLeftUrl;
+	}
 
-    public static void setServerIp(String serverIp) {
-        InterfaceKit.serverIp = serverIp;
-    }
+	public static String getGetBtUrl() {
+		return PropKit.get("serverhostip") + getBtUrl;
+	}
 
-    public static String getGetRightUrl() {
-        return getRightUrl;
-    }
-
-    public static void setGetRightUrl(String getRightUrl) {
-        InterfaceKit.getRightUrl = getRightUrl;
-    }
-
-    public static String getGetLeftUrl() {
-        return getLeftUrl;
-    }
-
-    public static void setGetLeftUrl(String getLeftUrl) {
-        InterfaceKit.getLeftUrl = getLeftUrl;
-    }
-
-    public static String getGetBtUrl() {
-        return getBtUrl;
-    }
-
-    public static void setGetBtUrl(String getBtUrl) {
-        InterfaceKit.getBtUrl = getBtUrl;
-    }
-
-    public static String getGetPageBtUrl() {
-        return getPageBtUrl;
-    }
-
-    public static void setGetPageBtUrl(String getPageBtUrl) {
-        InterfaceKit.getPageBtUrl = getPageBtUrl;
-    }
+	public static String getGetPageBtUrl() {
+		return PropKit.get("serverhostip") + getPageBtUrl;
+	}
 }

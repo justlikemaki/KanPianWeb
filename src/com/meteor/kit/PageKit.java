@@ -101,7 +101,7 @@ public class PageKit {
 				}
 			}
 		} catch (Exception e) {
-			logger.error("getparameters: " + e.toString());
+			logger.error("getparameters: " + e.toString(), e);
 			return null;
 		}
 		return "ok";
@@ -109,7 +109,7 @@ public class PageKit {
 
 	private static String getparameters(HttpSession sct,int withdate) throws Exception {
 		List<DateVo> datelist=null;
-		List<Map.Entry> hotlist=null;
+ 		List<Map.Entry> hotlist=null;
 		Map param = new HashMap();
 		param.put("withdate",withdate+"");
 		String url=InterfaceKit.getGetRightUrl();
